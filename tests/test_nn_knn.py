@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from nn_knn import prepare_data
+from nn_knn import predictLabelNN, prepare_data
 
 
 @pytest.fixture
@@ -64,3 +64,12 @@ def test_prepare_data(sample_dataset):
     # Check normalization
     assert np.all((x_train >= 0) & (x_train <= 1))
     assert np.all((x_test >= 0) & (x_test <= 1))
+
+
+def test_predictLabelNN(sample_dataset):
+    x_train_raw, y_train_raw, x_test_raw, y_test_raw = sample_dataset
+    x_train, y_train, x_test, y_test = prepare_data(x_train_raw, y_train_raw, x_test_raw, y_test_raw)
+
+    # Check predictions for hand-crafted data
+    assert (predictLabelNN(x_train, y_train, x_test[0], True) == y_test[0]).all()
+    assert (predictLabelNN(x_train, y_train, x_test[1], True) == y_test[1]).all()
