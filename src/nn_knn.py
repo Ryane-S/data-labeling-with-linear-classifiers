@@ -109,6 +109,8 @@ def main():
         predictedLabel = predictLabelNN(x_train, y_train, img, True) # Set the last parameter to True to use the L1 (Manhattan) distance or to False to use the L2 (Euclidian) distance.
 
         # Predict label using KNN algorithm
+        K = 3
+        predictedLabel = predictLabelKNN(x_train, y_train, img, K, True)
 
         # Compare the predicted label with the groundtruth and increment the counter
         if (predictedLabel == y_test[idx]).all():
@@ -117,6 +119,7 @@ def main():
     # Compute the accuracy
     accuracy = 100 * numberOfCorrectPredictedImages
     print(f'System accuracy = {accuracy}')
+
 
 if __name__ == "__main__":
     main()
