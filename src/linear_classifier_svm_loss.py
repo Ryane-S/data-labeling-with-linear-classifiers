@@ -175,7 +175,7 @@ def main():
 
         # Stop training after a fixed number of steps and save the figure
         if number_steps == 400:
-            plt.savefig(fname="for0point1")
+            plt.savefig(fname="accuracy_loss_evolution")
             break
 
         # Update previous loss and increment step counter
